@@ -10,4 +10,5 @@
 ## Oficina de trabajo 15/09/2021
 
 -   Desarroyo practica de una oficina de comercio electronico
--
+-   Implemetacion de lo middleware de roles de usuarios
+-   pendiente crear los dashboard de cada usuario

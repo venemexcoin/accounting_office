@@ -20,3 +20,29 @@ use App\Http\Livewire\HomeComponent;
 
 Route::get('/',HomeComponent::class)->name('home');
 
+
+// Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+//     return view('dashboard');
+// })->name('dashboard');
+
+// For User or Customer
+Route::middleware(['auth:sanctum', 'verified'])->group(function(){
+
+});
+
+// For CLB colaborador
+Route::middleware(['auth:sanctum', 'verified','authsuplente'])->group(function(){
+
+});
+
+// COS Contador Suplente
+Route::middleware(['auth:sanctum', 'verified','authcolaborador'])->group(function(){
+
+});
+
+
+// Administrador
+Route::middleware(['auth:sanctum', 'verified','authadmin'])->group(function(){
+
+});
+

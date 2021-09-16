@@ -29,36 +29,7 @@
 
 <body>
     <!-- Top Bar Start -->
-    <div class="top-bar d-none d-md-block">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-8">
-                    <div class="top-bar-left">
-                        <div class="text">
-                            <i class="far fa-clock"></i>
-                            <h2>8:00 - 9:00</h2>
-                            <p>Mon - Fri</p>
-                        </div>
-                        <div class="text">
-                            <i class="fa fa-phone-alt"></i>
-                            <h2>+123 456 7890</h2>
-                            <p>For Appointment</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="top-bar-right">
-                        <div class="social">
-                            <a href=""><i class="fab fa-twitter"></i></a>
-                            <a href=""><i class="fab fa-facebook-f"></i></a>
-                            <a href=""><i class="fab fa-linkedin-in"></i></a>
-                            <a href=""><i class="fab fa-instagram"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    @livewire('homecomponentes.top-bar-component')
     <!-- Top Bar End -->
 
     <!-- Nav Bar Start -->
@@ -77,14 +48,94 @@
                     <a href="feature.html" class="nav-item nav-link">Feature</a>
                     <a href="advisor.html" class="nav-item nav-link">Advisor</a>
                     <a href="review.html" class="nav-item nav-link">Review</a>
+
+
+                    @if(Route::has('login'))
+                    @auth
+                        @if(Auth::user()->utype === 'ADM')
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">{{Auth::user()->name}}</a>
+                            <div class="dropdown-menu">
+                                <a href="blog.html" class="dropdown-item">Blog Page</a>
+                                <a href="single.html" class="dropdown-item">Single Page</a>
+                                <a title="Logout" class="dropdown-item" href="{{ route('logout') }}"
+                                onclick="event.preventDefault(); document.getElementById('logout-form').submit(); ">Logout</a>
+                            </div>
+                        <form id="logout-form" method="POST" action="{{ route('logout') }}">
+                            @csrf
+
+                        </form>
+                        </div>
+                        @elseif(Auth::user()->utype === 'CLB')
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">{{Auth::user()->name}}</a>
+                            <div class="dropdown-menu">
+                                <a href="blog.html" class="dropdown-item">Blog Page</a>
+                                <a href="single.html" class="dropdown-item">Single Page</a>
+                                <a title="Logout" class="dropdown-item" href="{{ route('logout') }}"
+                                onclick="event.preventDefault(); document.getElementById('logout-form').submit(); ">Logout</a>
+                        </div>
+                        <form id="logout-form" method="POST" action="{{ route('logout') }}">
+                            @csrf
+
+                        </form>
+                        </div>
+                        @elseif(Auth::user()->utype === 'CLB')
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">{{Auth::user()->name}}</a>
+                            <div class="dropdown-menu">
+                                <a href="blog.html" class="dropdown-item">Blog Page</a>
+                                <a href="single.html" class="dropdown-item">Single Page</a>
+                                <a title="Logout" class="dropdown-item" href="{{ route('logout') }}"
+                                onclick="event.preventDefault(); document.getElementById('logout-form').submit(); ">Logout</a>
+                        </div>
+                        <form id="logout-form" method="POST" action="{{ route('logout') }}">
+                            @csrf
+
+                        </form>
+                        </div>
+
+                        @elseif(Auth::user()->utype === 'COS')
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">{{Auth::user()->name}}</a>
+                            <div class="dropdown-menu">
+                                <a href="blog.html" class="dropdown-item">Blog Page</a>
+                                <a href="single.html" class="dropdown-item">Single Page</a>
+                                <a title="Logout" class="dropdown-item" href="{{ route('logout') }}"
+                                onclick="event.preventDefault(); document.getElementById('logout-form').submit(); ">Logout</a>
+                        </div>
+                        <form id="logout-form" method="POST" action="{{ route('logout') }}">
+                            @csrf
+
+                        </form>
+                        </div>
+                        @else
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">{{Auth::user()->name}}</a>
+                            <div class="dropdown-menu">
+                                <a href="blog.html" class="dropdown-item">Blog Page</a>
+                                <a href="single.html" class="dropdown-item">Single Page</a>
+                                <a title="Logout" class="dropdown-item" href="{{ route('logout') }}"
+                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit(); ">Logout</a>
+                            </div>
+                            <form id="logout-form" method="POST" action="{{ route('logout') }}">
+                                @csrf
+
+                            </form>
+                        </div>
+                        @endif
+                    @else
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Ingreso</a>
                         <div class="dropdown-menu">
-                            <a href="blog.html" class="dropdown-item">Blog Page</a>
-                            <a href="single.html" class="dropdown-item">Single Page</a>
+                            <a href="{{route('login')}}" class="dropdown-item">Login</a>
+                            <a href="{{route('register')}}" class="dropdown-item">Register</a>
                         </div>
                     </div>
-                    <a href="contact.html" class="nav-item nav-link">Contact</a>
+                    @endif
+                    @endif
+
+
                 </div>
             </div>
         </div>
